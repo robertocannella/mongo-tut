@@ -1,6 +1,7 @@
 # mongo-tut
 
 # mongo db common use
+```
 Items
     .find({author: 'Roberto', isPublished: true})
     .sort({name: 1}) // sort ascending.  Use -1 for decending
@@ -9,18 +10,18 @@ Items
 
 Items
     .select({name: 1, tags: 1}) // return only the listed items (1 is for TRUE)
-
+```
 
 
 ## comparison operators - using $
-eq (equal)
-ne (not equal)
-gt (greater than)
-gte (greater than or equal to)
-lt (less than)
-lte (less than or equal to)
-in 
-nin (not in)
+* eq (equal)
+* ne (not equal)
+* gt (greater than)
+* gte (greater than or equal to)
+* lt (less than)
+* lte (less than or equal to)
+* in 
+* nin (not in)
 
 ```
 Items
@@ -34,8 +35,8 @@ Items
 ```
 
 ## logical operators - using $
-or 
-and
+* or 
+* and
 
 ```
 Items
@@ -45,6 +46,23 @@ Items
 Items.
     .find()
     .and([ ]) // combining
+
+
+async function getCourses() {
+    return await Course
+        .find({ isPublished: true })
+        .or([{ tags: 'frontend' }, { tags: 'backend' }]) // pass and array of filtering objects
+         [  { filter1 } , { filter 2 }  ]
+        .sort({ price: -1 })
+        .select({ name: 1, author: 1 })
+}
+
+
+async function getCourses() {
+    return await Course
+        .find({ isPublished: true })
+        .or([{ name: /.*by.*$/i }, { price: { $gte: 15 } }])
+}
 ```
 
 # regex
@@ -69,8 +87,8 @@ Items.
 
 ## Pagination with .skip() and .limit()
 
-// endpoint /api/courses?pageNumber=2&pageSize=10
 ```
+// endpoint /api/courses?pageNumber=2&pageSize=10
     const pageNumber = 2;
     const pageSeze = 10;
 
