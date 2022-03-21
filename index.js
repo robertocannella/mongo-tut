@@ -52,5 +52,13 @@ async function createCourse() {
     const result = await course.save().catch((e) => { console.log(e) })
     console.log(result)
 }
+async function getCourses() {
+    const courses = await Course
+        .find({ author: 'Mosh', isPublised: true })
+        .limit(10)
+        .sort({ name: 1 }) // -1 for decending
+        .count()
 
-createCourse();
+    console.log(courses)
+}
+getCourses();
